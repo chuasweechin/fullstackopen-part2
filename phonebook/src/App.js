@@ -1,23 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
 
 const App = () => {
-    const [ persons, setPersons] = useState([
-        { id: 1, name: 'Arto Hellas', number: '040-123456' },
-        { id: 2, name: 'Ada Lovelace', number: '39-44-5323523' },
-        { id: 3, name: 'Dan Abramov', number: '12-43-234345' },
-        { id: 4, name: 'Mary Poppendieck', number: '39-23-6423122' }
-    ])
-
+    const [ persons, setPersons] = useState([])
     const [ newName, setNewName ] = useState('')
     const [ newNumber, setNewNumber ] = useState('')
     const [ newFilter, setNewFilter ] = useState('')
 
     const personsToShow = newFilter.length === 0 ? persons
                             : persons.filter(person => person.name.search(newFilter) >= 0)
+
+    const dataHook = async () => {
+        const response = await axios.get('http://localhost:3001/persons')
+        setPersons(response.data)
+    }
+
+    useEffect(dataHook, []);
 
     const addContact = (event) => {
         let duplicate = false;
