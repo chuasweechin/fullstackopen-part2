@@ -11,15 +11,18 @@ const App = () => {
     const countriesToShow = newFilter.length === 0 ? countries
                             : countries.filter(country => country.name.toLowerCase().indexOf(newFilter) >= 0)
 
-    const dataHook = () => {
-        axios
-            .get('https://restcountries.eu/rest/v2/all')
-            .then((response) => {
-                setCountries(response.data)
-            })
-    }
+    useEffect(() => {
+        const dataHook = () => {
+            axios
+                .get('https://restcountries.eu/rest/v2/all')
+                .then((response) => {
+                    setCountries(response.data)
+                })
+        }
 
-    useEffect(dataHook,[]);
+        dataHook();
+
+    }, []);
 
     const handleFilterChange = (e) => setNewFilter(e.target.value.toLowerCase())
 

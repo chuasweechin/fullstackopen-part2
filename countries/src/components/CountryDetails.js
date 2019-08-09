@@ -6,15 +6,18 @@ import Languages from './Languages'
 const CountryDetails = ({ country }) => {
     const [weather, setWeather] = useState(null);
 
-    const dataHook = () => {
-        axios
-            .get(`https://api.apixu.com/v1/current.json?key=fda124a179ba417e8b4155251190908&q=${ country.name }`)
-            .then(response => {
-                setWeather(response.data)
-            })
-    }
+    useEffect(() => {
+        const dataHook = () => {
+            axios
+                .get(`https://api.apixu.com/v1/current.json?key=fda124a179ba417e8b4155251190908&q=${ country.name }`)
+                .then(response => {
+                    setWeather(response.data)
+                })
+        }
 
-    useEffect(dataHook, []);
+        dataHook()
+
+    }, [country.name]);
 
     if (weather !== null) {
         return (
