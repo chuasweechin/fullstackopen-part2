@@ -19,7 +19,7 @@ const App = () => {
             })
     }
 
-    useEffect(dataHook, []);
+    useEffect(dataHook,[]);
 
     const handleFilterChange = (e) => setNewFilter(e.target.value.toLowerCase())
 

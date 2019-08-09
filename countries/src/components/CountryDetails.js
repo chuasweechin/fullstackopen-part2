@@ -55,6 +55,8 @@ const CountryDetails = ({ country }) => {
                 <div>
                     <img src={ country.flag } width="200px"/>
                 </div>
+
+                <h2>Loading Weather for { country.name }....</h2>
             </div>
         )
     }
