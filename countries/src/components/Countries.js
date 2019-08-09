@@ -3,12 +3,14 @@ import React from 'react'
 import Country from './Country'
 import CountryDetails from './CountryDetails'
 
-const Countries = ({ countries, filter, handleFilterChange }) => {
+const Countries = ({ filter, countries, handleFilterChange }) => {
     let resultElements = "Please specific a filter"
 
     if (filter.length > 0) {
         if (countries.length === 1) {
-            resultElements = <CountryDetails country={ countries[0] }/>
+            resultElements = <CountryDetails
+                                country={ countries[0] }
+                            />
         }
         else if (countries.length > 10) {
             resultElements = "There are too many matches, please specific another filter"
