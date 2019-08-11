@@ -2,10 +2,14 @@ import React from 'react'
 
 import Person from './Person'
 
-const Persons = ({ persons }) => {
+const Persons = ({ persons, destroyContact }) => {
     const personElements = persons.map((e) => {
         return (
-            <Person key= { e.id } person={ e }/>
+            <Person
+                key= { e.id }
+                person={ e }
+                destroyContact ={ destroyContact }
+            />
         )
     });
 
